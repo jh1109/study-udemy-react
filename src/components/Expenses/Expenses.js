@@ -6,15 +6,18 @@ import Card from "../UI/Card";
 import "./Expenses.css";
 
 const Expenses = (props) => {
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [filteredYear, setFilteredYear] = useState("2020");
 
-  const changeFilterHandler = (year) => {
-    setYear(year);
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
   };
-  console.log(year);
   return (
     <Card className="expenses">
-      <ExpensesFilter onChangeFilter={changeFilterHandler} />
+      <ExpensesFilter
+        // 기본값 바꾸기
+        selected={filteredYear}
+        onChangeFilter={filterChangeHandler}
+      />
       <ExpenseItem
         title={props.items[0].title}
         amount={props.items[0].amount}
