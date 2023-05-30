@@ -34,7 +34,8 @@ const App = () => {
 
   const addExpenseHandler = (expense) => {
     console.log(expense);
-    setExpenses(expenses.concat(expense));
+    // setExpenses(expenses.concat(expense));
+    setExpenses((prevExpenses) => [expense, ...prevExpenses]);
   };
 
   // return React.createElement(
