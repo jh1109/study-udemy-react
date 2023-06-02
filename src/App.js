@@ -36,6 +36,8 @@ const App = () => {
     console.log(expense);
     // setExpenses(expenses.concat(expense));
     setExpenses((prevExpenses) => [expense, ...prevExpenses]);
+    // setExpenses에 전달된 콜백함수는 react에 의해 자동으로 실행된다.
+    // 여기서 prevExpenses는 이전 state
   };
 
   // return React.createElement(
