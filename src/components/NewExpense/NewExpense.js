@@ -10,31 +10,32 @@ import ExpenseForm from "./ExpenseForm";
 // cancle 버튼을 클릭하면 다시 첫 화면인 Add New Expense가 보여짐
 
 const NewExpense = ({ onAddExpense }) => {
-  const [showForm, setShowForm] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
       id: Math.random().toString(),
     };
     onAddExpense(expenseData);
+    setIsEditing(false);
   };
-  const showFormHandler = useCallback(() => {
-    setShowForm(true);
+  const startEditingHandler = useCallback(() => {
+    setIsEditing(true);
   }, []);
-  const closeFormHandler = () => {
-    setShowForm(false);
+  const stopEditingHandler = () => {
+    setIsEditing(false);
   };
 
   return (
     <div className="new-expense">
-      {showForm ? (
+      {isEditing ? (
         <ExpenseForm
           onSaveExpenseData={saveExpenseDataHandler}
-          onCloseForm={closeFormHandler}
+          onCancle={stopEditingHandler}
           name="Juhee"
         />
       ) : (
-        <button type="button" onClick={showFormHandler}>
+        <button type="button" onClick={startEditingHandler}>
           Add New Expense
         </button>
       )}
